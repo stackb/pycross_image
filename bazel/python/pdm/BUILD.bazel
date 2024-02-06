@@ -1,0 +1,14 @@
+load("@//bazel:python.bzl", "py_binary", "pycross_image", "requirement")
+
+py_binary(
+    name = "pdm",
+    srcs = ["main.py"],
+    main = "main.py",
+    deps = [requirement("pdm")],
+)
+
+pycross_image(
+    name = "image",
+    base = "@distroless_python3_debian12",
+    binary = ":pdm",
+)

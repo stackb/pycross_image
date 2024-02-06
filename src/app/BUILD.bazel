@@ -1,0 +1,7 @@
+load("@//bazel:python.bzl", "py_binary")
+
+py_binary(
+    name = "app",
+    # deps = [],
+    srcs = ["app.py"],
+)

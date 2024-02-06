@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "rules-python-pycross-poetry-example"
+version = "0.1.0"
+description = "An example of rules_python + rules_pycross"
+authors = ["Paul Johnston <pcj@stack.build>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pdm = "^2.12.3"
+# poetry = "^1.7.1"
+
+# [tool.poetry.group.dev.dependencies]
+# poetry = "^1.7.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
