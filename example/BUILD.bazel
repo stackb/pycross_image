@@ -5,3 +5,9 @@ example_test(
     srcs = glob(["oci/**/*"]),
     workspace_template = "local.WORKSPACE",
 )
+
+example_test(
+    name = "docker",
+    srcs = glob(["oci/**/*"]),
+    workspace_template = "local.WORKSPACE",
+)
