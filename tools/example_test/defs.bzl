@@ -84,7 +84,7 @@ def example_test(**kwargs):
     gen_name = name + "_gen"
 
     test_content = kwargs.pop("test_content", None)
-    rule_files = kwargs.pop("rule_files", ["//:all_files"])
+    rule_files = kwargs.pop("rule_files", ["//:example_test_files"])
 
     _example_gen(
         name = gen_name,
@@ -102,10 +102,10 @@ def example_test(**kwargs):
         **kwargs
     )
 
-def example_test_filegroup(name, srcs):
-    filegroup(
+def example_test_filegroup(name, **kwargs):
+    native.filegroup(
         name = name,
-        srcs = srcs,
         testonly = True,
         visibility = ["//visibility:public"],
+        **kwargs
     )

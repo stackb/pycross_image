@@ -1,10 +1,10 @@
-load("@//bazel:python.bzl", "py_binary", "pycross_image", "requirement")
+load("@//bazel:python.bzl", "py_binary", "pycross_image")
 
 py_binary(
     name = "pdm",
     srcs = ["main.py"],
     main = "main.py",
-    deps = [requirement("pdm")],
+    deps = ["@pypi_deps_for_pdm//:pdm"],
 )
 
 pycross_image(

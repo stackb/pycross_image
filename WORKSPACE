@@ -1,11 +1,13 @@
-load("@//bazel:repositories.bzl", "repositories")
+workspace(name = "pycross_image")
+
+load("@pycross_image//bazel:repositories.bzl", "repositories")
 
 repositories()
 
 # -----------------------------------------
 
 load(
-    "@//bazel:workspace0.bzl",
+    "@pycross_image//bazel:workspace0.bzl",
     "setup_aspect_bazel_lib",
     "setup_bazel_gazelle",
     "setup_bazel_skylib",
@@ -35,29 +37,32 @@ setup_rules_docker()
 # -----------------------------------------
 
 load(
-    "@//bazel:workspace1.bzl",
-    "setup_containers",
+    "@pycross_image//bazel:workspace1.bzl",
+    "setup_docker_containers",
+    "setup_oci_containers",
     "setup_rules_pycross",
 )
 
-setup_containers()
+setup_oci_containers()
+
+setup_docker_containers()
 
 setup_rules_pycross()
 
 # -----------------------------------------
 
 load(
-    "@//bazel:workspace2.bzl",
-    "setup_poetry",
+    "@pycross_image//bazel:workspace2.bzl",
+    "setup_pdm_deps",
 )
 
-setup_poetry()
+setup_pdm_deps()
 
 # -----------------------------------------
 
 load(
-    "@//bazel:workspace3.bzl",
-    "setup_poetry_deps",
+    "@pycross_image//bazel:workspace3.bzl",
+    "install_pdm_deps",
 )
 
-setup_poetry_deps()
+install_pdm_deps()

@@ -6,7 +6,7 @@ based on: https://github.com/aspect-build/bazel-examples/blob/a25b6c0ba307545aff
 
 load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_binary")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
-load(":py_layers.bzl", "py_layers")
+# load(":py_layers.bzl", "py_layers")
 
 def _make_entrypoint(toolchain_config_setting_label, workdir, cmd):
     print("workdir:", workdir)
@@ -24,7 +24,7 @@ def py_image(
         base = "@distroless_python3_debian12",
         tars = [],
         config = "@python//:x86_64-unknown-linux-gnu",
-        target_platform = "@pycross_image//bazel/python:linux_x86_64",
+        target_platform = "@pycross_image//platform:linux_x86_64",
         **kwargs):
     """
     pycross_oci_image is a macro that instantiates an oci_image from a py_binary rule
@@ -80,15 +80,17 @@ def py_image(
     """
 
     name_tar = name + ".tar"
-    target = native.package_relative_label(binary)
+    target = Label(binary)
     print("target:", target)
     cmd = target.name
-    cross_binary = "x" + cmd
+    cross_binary = cmd + "_cross_binary"
     repo_tag = "%s/%s:latest" % (target.package, target.name)
 
     workdir = "/%s/%s/%s" % (target.package, target.name, cross_binary)
     entrypoint = _make_entrypoint(config, workdir, cmd)
-    layer_tars = py_layers(name, cross_binary)
+
+    # layer_tars = py_layers(name, cross_binary)
+    layer_tars = []
 
     platform_transition_binary(
         name = cross_binary,

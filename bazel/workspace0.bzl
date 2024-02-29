@@ -52,12 +52,12 @@ def setup_zig_toolchains():
         "@zig_sdk//toolchain:darwin_arm64",
     )
 
-def setup_rules_python():
+def setup_rules_python(name = "python", python_version = "3.10.11"):
     py_repositories()
     python_register_toolchains(
-        name = "python",
+        name = name,
         # NOTE: available versions are listed in @rules_python//python:versions.bzl.
-        python_version = "3.10.11",
+        python_version = python_version,
     )
 
 def setup_rules_go():
