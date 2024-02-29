@@ -4,38 +4,9 @@ version = "0.1.0"
 description = "bazel rules for python containerization"
 authors = [{ name = "Paul Johnston", email = "pcj@stack.build" }]
 dependencies = [
-    "aiohttp>=3.9.3",
-    "asyncpg>=0.29.0",
-    "click>=8.1.7",
-    "colorama>=0.4.6",
-    "coloredlogs>=15.0.1",
-    "confluent-kafka>=2.3.0",
-    "freezegun>=1.4.0",
-    "grpclib>=0.4.7",
-    "httpx>=0.26.0",
-    "lightgbm>=4.3.0",
-    "matplotlib>=3.8.2",
-    "numpy>=1.24.4",
-    "pandas-gbq>=0.21.0",
-    "pandas>=2.0.3",
-    "prometheus-client>=0.19.0",
-    "protobuf>=4.25.2",
-    "pytest>=8.0.0",
-    "python-json-logger>=2.0.7",
-    "redis>=5.0.1",
-    "s3fs>=2024.2.0",
-    "scikit-build-core>=0.8.0",
     "setuptools>=69.0.3",
-    "twine>=5.0.0",
-    "uvloop>=0.19.0",
     "wheel>=0.42.0",
     "pdm>=2.12.3",
-    "devpi-server>=6.10.0",
-    "devpi-client>=7.0.2",
-    "gspread==6.0.1",
-    "pyyaml==6.0.1",
-    "google-cloud-bigquery==3.17.2",
-    "devpi-web>=4.2.1",
 ]
 requires-python = ">=3.9,<3.11"
 readme = "README.md"

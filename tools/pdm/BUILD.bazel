@@ -8,6 +8,12 @@ py_binary(
     deps = ["@pypi_deps_for_pdm//:pdm"],
 )
 
+sh_binary(
+    name = "run",
+    srcs = ["run.sh"],
+    data = [":pdm"],
+)
+
 py_image(
     name = "image",
     base = "@distroless_python3_debian12",

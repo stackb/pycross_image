@@ -20,11 +20,11 @@ def setup_pdm_deps(
             lock_file = lock_file,
             project_file = project_file,
         ),
-        package_build_dependencies = {
-            "grpclib": [
-                "setuptools",
-                "wheel",
-            ],
-        },
+        # package_build_dependencies = {
+        #     "grpclib": [
+        #         "setuptools",
+        #         "wheel",
+        #     ],
+        # },
         target_environments = environments,
     )
