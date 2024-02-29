@@ -22,6 +22,7 @@ func generateTest(c *Config) error {
 	fmt.Fprintln(f, "var txtar=`")
 
 	fmt.Fprintf(f, "-- WORKSPACE --\n")
+
 	data, err := os.ReadFile(c.WorkspaceIn)
 	if err != nil {
 		return fmt.Errorf("read %q: %v", c.WorkspaceIn, err)
@@ -29,8 +30,9 @@ func generateTest(c *Config) error {
 	if _, err := f.Write(data); err != nil {
 		return fmt.Errorf("write %q: %v", c.WorkspaceIn, err)
 	}
-	// seek out the WORKSPACE file and append it now such that the WORKSPACE in
-	// the testdata is concatenated with the config.WorkspaceIn.
+
+	// seek out the WORKSPACE.in file and append it now such that the WORKSPACE
+	// in the testdata is concatenated with the config.WorkspaceIn.
 	for _, src := range c.Files {
 		if filepath.Base(src) != "WORKSPACE.in" {
 			continue
@@ -80,7 +82,7 @@ func mapFilename(in string) string {
 
 	switch base {
 	case "WORKSPACE.in":
-		return "WORKSPACE"
+		return ""
 	case "BUILD.in":
 		return filepath.Join(dir, "BUILD.bazel")
 	}
