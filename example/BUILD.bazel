@@ -2,17 +2,16 @@ load("//tools/example_test:defs.bzl", "example_test")
 
 example_test(
     name = "oci",
-    srcs = glob(["oci/**/*"]),
-    # srcs = [
-    #     "oci/.bazelversion",
-    #     "oci/BUILD.in",
-    #     "oci/WORKSPACE.in",
-    #     "oci/pdm.lock",
-    #     "oci/pyproject.toml",
-    #     "oci/repositories.bzl",
-    #     "oci/src/app/BUILD.in",
-    #     "oci/src/app/app.py",
-    # ],
+    srcs = [
+        "oci/.bazelversion",
+        "oci/BUILD.in",
+        "oci/WORKSPACE.in",
+        "oci/pdm.lock",
+        "oci/pyproject.toml",
+        "oci/repositories.bzl",
+        "oci/src/app/BUILD.in",
+        "oci/src/app/app.py",
+    ],
     workspace_template = "local.WORKSPACE",
 )
 

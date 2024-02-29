@@ -1,5 +1,3 @@
-"workspace loading - phase 0"
-
 load(
     "@rules_python//python:repositories.bzl",
     "py_repositories",
@@ -45,7 +43,8 @@ load(
     "aspect_bazel_lib_register_toolchains",
 )
 
-def setup_zig_toolchains():
+def _setup_zig_toolchains():
+    "workspace chunk to declares and registers zig toolchains"
     zig_toolchains()
     native.register_toolchains(
         "@zig_sdk//toolchain:linux_amd64_gnu.2.28",
@@ -54,7 +53,7 @@ def setup_zig_toolchains():
         "@zig_sdk//toolchain:darwin_arm64",
     )
 
-def setup_rules_python(name = "python", python_version = "3.10.11"):
+def _setup_rules_python(name = "python", python_version = "3.10.11"):
     py_repositories()
     python_register_toolchains(
         name = name,
@@ -62,27 +61,38 @@ def setup_rules_python(name = "python", python_version = "3.10.11"):
         python_version = python_version,
     )
 
-def setup_rules_go():
+def _setup_rules_go(go_version = "1.20.12"):
     go_rules_dependencies()
-    go_register_toolchains(go_version = "1.20.12")
+    go_register_toolchains(go_version = go_version)
 
-def setup_rules_docker():
+def _setup_rules_docker():
     container_repositories()
     container_deps()
 
-def setup_bazel_gazelle():
+def _setup_bazel_gazelle():
     gazelle_dependencies()
 
-def setup_bazel_skylib():
+def _setup_bazel_skylib():
     bazel_skylib_workspace()
 
-def setup_aspect_bazel_lib():
+def _setup_aspect_bazel_lib():
     aspect_bazel_lib_dependencies()
     aspect_bazel_lib_register_toolchains()
 
-def setup_rules_oci():
+def _setup_rules_oci():
     rules_oci_dependencies()
     oci_register_toolchains(
         name = "oci",
         crane_version = LATEST_CRANE_VERSION,
     )
+
+step1 = struct(
+    setup_aspect_bazel_lib = _setup_aspect_bazel_lib,
+    setup_bazel_gazelle = _setup_bazel_gazelle,
+    setup_bazel_skylib = _setup_bazel_skylib,
+    setup_rules_docker = _setup_rules_docker,
+    setup_rules_go = _setup_rules_go,
+    setup_rules_oci = _setup_rules_oci,
+    setup_rules_python = _setup_rules_python,
+    setup_zig_toolchains = _setup_zig_toolchains,
+)

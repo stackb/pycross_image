@@ -1,5 +1,3 @@
-"workspace loading - phase 1"
-
 load(
     "@python//:defs.bzl",
     python_interpreter = "interpreter",
@@ -21,7 +19,7 @@ load(
     "oci_pull",
 )
 
-def setup_rules_pycross(
+def _setup_rules_pycross(
         pycross_toolchains_repo_name = "pycross_toolchains",
         glibc_version = "2.28"):
     rules_pycross_dependencies(
@@ -33,7 +31,7 @@ def setup_rules_pycross(
         python_toolchains_repo = "@python",
     )
 
-def setup_oci_containers():
+def _setup_oci_containers():
     oci_pull(
         name = "distroless_base",
         digest = "sha256:ccaef5ee2f1850270d453fdf700a5392534f8d1a8ca2acda391fbb6a06b81c86",
@@ -50,7 +48,7 @@ def setup_oci_containers():
         image = "gcr.io/distroless/python3-debian12",
     )
 
-def setup_docker_containers():
+def _setup_docker_containers():
     container_pull(
         name = "python3-debian12",
         # from 'crane manifest gcr.io/distroless/python3-debian12:latest'
@@ -58,3 +56,9 @@ def setup_docker_containers():
         registry = "gcr.io",
         repository = "distroless/python3-debian12",
     )
+
+step2 = struct(
+    setup_rules_pycross = _setup_rules_pycross,
+    setup_docker_containers = _setup_docker_containers,
+    setup_oci_containers = _setup_oci_containers,
+)

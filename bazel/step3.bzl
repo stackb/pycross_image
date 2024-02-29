@@ -1,5 +1,3 @@
-"workspace loading - phase 2"
-
 load(
     "@rules_pycross//pycross:workspace.bzl",
     "lock_repo_model_pdm",
@@ -10,7 +8,7 @@ load(
     "environments",
 )
 
-def setup_pdm_deps(
+def _setup_pypi_deps_for_pdm(
         name = "pypi_deps_for_pdm",
         lock_file = "@//:pdm.lock",
         project_file = "@//:pyproject.toml"):
@@ -28,3 +26,7 @@ def setup_pdm_deps(
         # },
         target_environments = environments,
     )
+
+step3 = struct(
+    setup_pypi_deps_for_pdm = _setup_pypi_deps_for_pdm,
+)
