@@ -1,4 +1,4 @@
-load("//tools/example_test:defs.bzl", "example_test_filegroup")
+load("//bazel/tools/example_test:defs.bzl", "example_test_filegroup")
 
 example_test_filegroup(
     name = "example_test_files",

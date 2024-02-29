@@ -1,5 +1,5 @@
 load("@rules_python//python:defs.bzl", "py_binary")
-load("@//rules:oci.bzl", "py_image")
+load("@//bazel/rules:oci.bzl", "py_image")
 
 py_binary(
     name = "pdm",

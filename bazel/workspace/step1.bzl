@@ -8,6 +8,10 @@ load(
     zig_toolchains = "toolchains",
 )
 load(
+    "@io_bazel_rules_docker//toolchains/docker:toolchain.bzl",
+    docker_toolchain_configure = "toolchain_configure",
+)
+load(
     "@io_bazel_rules_docker//repositories:repositories.bzl",
     container_repositories = "repositories",
 )
@@ -66,6 +70,11 @@ def _setup_rules_go(go_version = "1.20.12"):
     go_register_toolchains(go_version = go_version)
 
 def _setup_rules_docker():
+    if False:
+        docker_toolchain_configure(
+            name = "docker_config",
+            client_config = "@pycross_image//:.dockerconfig.json",
+        )
     container_repositories()
     container_deps()
 

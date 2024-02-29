@@ -8,7 +8,7 @@ go_library(
         "main.go",
         "template.go",
     ],
-    importpath = "github.com/stackb/pycross_image/tools/example_test/generator",
+    importpath = "github.com/stackb/pycross_image/bazel/tools/example_test/generator",
     visibility = ["//visibility:private"],
 )
 

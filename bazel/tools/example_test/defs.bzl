@@ -58,7 +58,7 @@ func TestBuild(t *testing.T) {
         ),
         "_generator": attr.label(
             doc = "The exampl generator tool",
-            default = "//tools/example_test/generator",
+            default = "//bazel/tools/example_test/generator",
             allow_single_file = True,
             executable = True,
             cfg = "exec",

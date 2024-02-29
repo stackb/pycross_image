@@ -3,16 +3,17 @@
 # ----------------------------------------------------
 # gazelle:prefix github.com/stackb/pycross_image
 
-load("//tools/example_test:defs.bzl", "example_test_filegroup")
+load("//bazel/tools/example_test:defs.bzl", "example_test_filegroup")
 
 example_test_filegroup(
     name = "example_test_files",
     srcs = [
+        ".dockerconfig.json",
         "BUILD.bazel",
         "WORKSPACE",
-        "//bazel:example_test_files",
-        "//platform:example_test_files",
-        "//rules:example_test_files",
-        "//tools/example_test:example_test_files",
+        "//bazel/platforms:example_test_files",
+        "//bazel/rules:example_test_files",
+        "//bazel/tools/example_test:example_test_files",
+        "//bazel/workspace:example_test_files",
     ],
 )

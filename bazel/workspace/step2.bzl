@@ -43,18 +43,19 @@ def _setup_oci_containers():
     )
 
     oci_pull(
-        name = "distroless_python3_debian12",
+        name = "distroless_python3_debian12_oci",
         digest = "sha256:0078c63ba4e9bb13eef1576a183fc0bc3fd04fd3d5a9bad5ede1069bddca0ebd",
         image = "gcr.io/distroless/python3-debian12",
     )
 
 def _setup_docker_containers():
     container_pull(
-        name = "python3-debian12",
+        name = "distroless_python3_debian12_container",
         # from 'crane manifest gcr.io/distroless/python3-debian12:latest'
         digest = "sha256:0078c63ba4e9bb13eef1576a183fc0bc3fd04fd3d5a9bad5ede1069bddca0ebd",
         registry = "gcr.io",
         repository = "distroless/python3-debian12",
+        # docker_client_config = "@pycross_image//:.dockerconfig.json",
     )
 
 step2 = struct(

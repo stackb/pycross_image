@@ -1,10 +1,10 @@
-load("@pycross_image//bazel:repositories.bzl", "repositories")
+load("@pycross_image//bazel/workspace:repositories.bzl", "repositories")
 
 repositories()
 
 # -----------------------------------------
 
-load("@pycross_image//bazel:step1.bzl", "step1")
+load("@pycross_image//bazel/workspace:step1.bzl", "step1")
 
 step1.setup_zig_toolchains()
 
@@ -18,7 +18,7 @@ step1.setup_rules_oci()
 
 # -----------------------------------------
 
-load("@pycross_image//bazel:step2.bzl", "step2")
+load("@pycross_image//bazel/workspace:step2.bzl", "step2")
 
 step2.setup_rules_pycross()
 

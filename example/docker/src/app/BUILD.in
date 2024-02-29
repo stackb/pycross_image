@@ -1,6 +1,5 @@
 load("@rules_python//python:defs.bzl", "py_binary")
-load("@pycross_image//rules:oci.bzl", "py_image")
-#load("@container_structure_test//:defs.bzl", "container_structure_test")
+load("@pycross_image//bazel/rules:docker.bzl", "py_image")
 
 py_binary(
     name = "app",
@@ -15,9 +14,3 @@ py_image(
     name = "image",
     binary = ":app",
 )
-
-# container_structure_test(
-#     name = "test",
-#     configs = ["test.yaml"],
-#     image = ":image",
-# )

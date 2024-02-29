@@ -1,0 +1,2 @@
+--repo_env=DOCKER_CONFIG=.
+--spawn_strategy=standalone

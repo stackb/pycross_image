@@ -5,8 +5,8 @@ based on: https://github.com/aspect-build/bazel-examples/blob/a25b6c0ba307545aff
 """
 
 load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_binary")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 load(":py_layers.bzl", "py_layers")
-load("@io_bazel_rules_docker//container:container.bzl", "container_image", "container_layer")
 
 def _make_entrypoint(toolchain_config_setting_label, workdir, cmd):
     label = Label(toolchain_config_setting_label)
@@ -20,10 +20,10 @@ def _make_entrypoint(toolchain_config_setting_label, workdir, cmd):
 def py_image(
         name,
         binary,
-        base = "@distroless_python3_debian12",
+        base = "@distroless_python3_debian12_oci",
         tars = [],
         config = "@python//:x86_64-unknown-linux-gnu",
-        target_platform = "@pycross_image//platform:linux_x86_64",
+        target_platform = "@pycross_image//bazel/platforms:linux_x86_64",
         **kwargs):
     """
     pycross_oci_image is a macro that instantiates an oci_image from a py_binary rule
@@ -78,6 +78,7 @@ def py_image(
         **kwargs: (Dict) additional argument for the oci_image rule
     """
 
+    name_tar = name + ".tar"
     target = Label(binary)
     cmd = target.name
     cross_binary = cmd + "_cross_binary"
@@ -87,7 +88,6 @@ def py_image(
     entrypoint = _make_entrypoint(config, workdir, cmd)
 
     layer_tars = py_layers(name, cross_binary)
-    layer_tars = []
 
     platform_transition_binary(
         name = cross_binary,
@@ -95,18 +95,18 @@ def py_image(
         target_platform = target_platform,
     )
 
-    for tar in layer_tars:
-        container_layer(
-            name = tar + "_layer",
-            tars = [tar],
-        )
-
-    container_image(
-        name = name + "_container",
-        base = "@python3-debian12//image",
-        layers = [tar + "_layer" for tar in layer_tars],
+    oci_image(
+        name = name,
+        tars = tars + layer_tars,
         workdir = workdir,
         entrypoint = [entrypoint],
-        tags = [repo_tag],
         cmd = [cmd],
+        base = base,
+        **kwargs
+    )
+
+    oci_tarball(
+        name = name_tar,
+        image = name,
+        repo_tags = [repo_tag],
     )
