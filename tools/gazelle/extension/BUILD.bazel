@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+# gazelle:exclude testdata
+
+go_library(
+    name = "extension",
+    srcs = [
+        "config.go",
+        "doc.go",
+        "extension.go",
+    ],
+    importpath = "github.com/stackb/pycross_image/tools/gazelle/extension",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@bazel_gazelle//config:go_default_library",
+        "@bazel_gazelle//label:go_default_library",
+        "@bazel_gazelle//language:go_default_library",
+        "@bazel_gazelle//repo:go_default_library",
+        "@bazel_gazelle//resolve:go_default_library",
+        "@bazel_gazelle//rule:go_default_library",
+    ],
+)

@@ -1,0 +1,17 @@
+[project]
+name = "pycross_image-example-oci"
+version = "0.1.0"
+description = "Example workspace for creating an oci image"
+authors = [{ name = "Paul Johnston", email = "pcj@stack.build" }]
+dependencies = [
+    "grpclib>=0.4.7",
+    "numpy>=1.24.4",
+    "pandas>=2.0.3",
+    "protobuf>=4.25.2",
+]
+requires-python = ">=3.9,<3.11"
+readme = "README.md"
+license = { text = "Proprietary" }
+
+[tool.pdm]
+distribution = false
