@@ -8,6 +8,6 @@ example_test(
 
 example_test(
     name = "docker",
-    srcs = glob(["oci/**/*"]),
+    srcs = glob(["docker/**/*"]),
     workspace_template = "local.WORKSPACE",
 )

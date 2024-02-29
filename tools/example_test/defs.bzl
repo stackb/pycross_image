@@ -19,7 +19,7 @@ def _example_gen_impl(ctx):
     )
 
     ctx.actions.run(
-        mnemonic = "ExampleGenerate",
+        mnemonic = "ExampleGen",
         progress_message = "Generating %s test" % ctx.attr.name,
         executable = ctx.file._generator,
         arguments = ["--config_json=%s" % ctx.outputs.json.path],
@@ -79,7 +79,6 @@ def example_test(**kwargs):
     """
     name = kwargs.pop("name")
     srcs = kwargs.pop("srcs", [])
-    deps = kwargs.pop("deps", [])
     strip_prefix = kwargs.pop("strip_prefix", "")
     gen_name = name + "_gen"
 
@@ -97,7 +96,6 @@ def example_test(**kwargs):
     go_bazel_test(
         name = name,
         srcs = [gen_name + "_test.go"],
-        deps = deps + ["@com_github_google_go_cmp//cmp"],
         rule_files = rule_files,
         **kwargs
     )

@@ -32,7 +32,7 @@ func generateTest(c *Config) error {
 	// seek out the WORKSPACE file and append it now such that the WORKSPACE in
 	// the testdata is concatenated with the config.WorkspaceIn.
 	for _, src := range c.Files {
-		if filepath.Base(src) != "WORKSPACE" {
+		if filepath.Base(src) != "WORKSPACE.in" {
 			continue
 		}
 		data, err := os.ReadFile(src)
@@ -79,11 +79,9 @@ func mapFilename(in string) string {
 	base := filepath.Base(in)
 
 	switch base {
-	case "WORKSPACE":
-		return ""
+	case "WORKSPACE.in":
+		return "WORKSPACE"
 	case "BUILD.in":
-		return ""
-	case "BUILD.out":
 		return filepath.Join(dir, "BUILD.bazel")
 	}
 
