@@ -5,7 +5,6 @@ example_test_filegroup(
     srcs = [
         "BUILD.bazel",
         # "container.bzl",
-        # "python.bzl",
         "repositories.bzl",
         "workspace0.bzl",
         "workspace1.bzl",
