@@ -8,7 +8,6 @@ load("//bazel/tools/example_test:defs.bzl", "example_test_filegroup")
 example_test_filegroup(
     name = "example_test_files",
     srcs = [
-        ".dockerconfig.json",
         "BUILD.bazel",
         "WORKSPACE",
         "//bazel/platforms:example_test_files",
