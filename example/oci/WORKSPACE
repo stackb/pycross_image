@@ -1,5 +1,3 @@
-workspace(name = "pycross_image")
-
 load("@pycross_image//bazel:repositories.bzl", "repositories")
 
 repositories()
@@ -11,7 +9,6 @@ load(
     "setup_aspect_bazel_lib",
     "setup_bazel_gazelle",
     "setup_bazel_skylib",
-    "setup_rules_docker",
     "setup_rules_go",
     "setup_rules_oci",
     "setup_rules_python",
@@ -32,37 +29,50 @@ setup_aspect_bazel_lib()
 
 setup_rules_oci()
 
-setup_rules_docker()
-
 # -----------------------------------------
 
 load(
     "@pycross_image//bazel:workspace1.bzl",
-    "setup_docker_containers",
     "setup_oci_containers",
     "setup_rules_pycross",
 )
 
-setup_oci_containers()
-
-setup_docker_containers()
-
 setup_rules_pycross()
 
-# -----------------------------------------
-
-load(
-    "@pycross_image//bazel:workspace2.bzl",
-    "setup_pdm_deps",
-)
-
-setup_pdm_deps()
+setup_oci_containers()
 
 # -----------------------------------------
 
 load(
-    "@pycross_image//bazel:workspace3.bzl",
-    "install_pdm_deps",
+    "@rules_pycross//pycross:workspace.bzl",
+    "lock_repo_model_pdm",
+    "pycross_lock_repo",
+)
+load(
+    "@pycross_toolchains//:defs.bzl",
+    "environments",
 )
 
-install_pdm_deps()
+pycross_lock_repo(
+    name = "pypi",
+    lock_model = lock_repo_model_pdm(
+        lock_file = "@//:pdm.lock",
+        project_file = "@//:pyproject.toml",
+    ),
+    package_build_dependencies = {
+        "grpclib": [
+            "setuptools",
+            "wheel",
+        ],
+    },
+    target_environments = environments,
+)
+
+# -----------------------------------------
+
+load(
+    "@pypi//:defs.bzl",
+    "install_deps",
+)
+
+install_deps()

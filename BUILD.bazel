@@ -1,0 +1,18 @@
+# ----------------------------------------------------
+# Gazelle
+# ----------------------------------------------------
+# gazelle:prefix github.com/stackb/pycross_image
+
+load("//tools/example_test:defs.bzl", "example_test_filegroup")
+
+example_test_filegroup(
+    name = "example_test_files",
+    srcs = [
+        "BUILD.bazel",
+        "WORKSPACE",
+        "//bazel:example_test_files",
+        "//platform:example_test_files",
+        "//rules:example_test_files",
+        "//tools/example_test:example_test_files",
+    ],
+)

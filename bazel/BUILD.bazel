@@ -1,0 +1,15 @@
+load("//tools/example_test:defs.bzl", "example_test_filegroup")
+
+example_test_filegroup(
+    name = "example_test_files",
+    srcs = [
+        "BUILD.bazel",
+        # "container.bzl",
+        # "python.bzl",
+        "repositories.bzl",
+        "workspace0.bzl",
+        "workspace1.bzl",
+        "workspace2.bzl",
+        "workspace3.bzl",
+    ],
+)

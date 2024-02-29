@@ -1,0 +1,7 @@
+load("//tools/example_test:defs.bzl", "example_test")
+
+example_test(
+    name = "oci",
+    srcs = glob(["oci/**/*"]),
+    workspace_template = "local.WORKSPACE",
+)
