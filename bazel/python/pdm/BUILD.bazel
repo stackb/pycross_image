@@ -1,4 +1,5 @@
-load("@//bazel:python.bzl", "py_binary", "pycross_image")
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@//rules:oci.bzl", "py_image")
 
 py_binary(
     name = "pdm",
@@ -7,7 +8,7 @@ py_binary(
     deps = ["@pypi_deps_for_pdm//:pdm"],
 )
 
-pycross_image(
+py_image(
     name = "image",
     base = "@distroless_python3_debian12",
     binary = ":pdm",

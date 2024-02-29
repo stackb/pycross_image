@@ -73,16 +73,17 @@ def repositories():
         urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.25.0.tar.gz"],
     )
 
-    # Release: v2.3.0
-    # TargetCommitish: main
-    # Date: 2024-01-10 23:07:03 +0000 UTC
-    # URL: https://github.com/aspect-build/bazel-lib/releases/tag/v2.3.0
-    # Size: 190487 (190 kB)
+    # Commit: aa6a58f73cfc7b6833e2d5f7a0c289f293e96637
+    # Date: 2024-02-27 18:10:08 +0000 UTC
+    # URL: https://github.com/aspect-build/bazel-lib/commit/aa6a58f73cfc7b6833e2d5f7a0c289f293e96637
+    #
+    # chore: bump libxml2 deb to USN-6658-1 (#768)
+    # Size: 195433 (195 kB)
     http_archive(
         name = "aspect_bazel_lib",
-        sha256 = "bda4a69fa50411b5feef473b423719d88992514d259dadba7d8218a1d02c7883",
-        strip_prefix = "bazel-lib-2.3.0",
-        urls = ["https://github.com/aspect-build/bazel-lib/archive/v2.3.0.tar.gz"],
+        sha256 = "97eb5dc00b7c767544cbb5aaeb4d12ada6cef7b154dd7da6cbfe87aa823a1556",
+        strip_prefix = "bazel-lib-aa6a58f73cfc7b6833e2d5f7a0c289f293e96637",
+        urls = ["https://github.com/aspect-build/bazel-lib/archive/aa6a58f73cfc7b6833e2d5f7a0c289f293e96637.tar.gz"],
     )
 
     # Release: v1.7.0

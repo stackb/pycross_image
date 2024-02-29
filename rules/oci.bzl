@@ -6,7 +6,7 @@ based on: https://github.com/aspect-build/bazel-examples/blob/a25b6c0ba307545aff
 
 load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_binary")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
-# load(":py_layers.bzl", "py_layers")
+load(":py_layers.bzl", "py_layers")
 
 def _make_entrypoint(toolchain_config_setting_label, workdir, cmd):
     print("workdir:", workdir)
@@ -81,7 +81,6 @@ def py_image(
 
     name_tar = name + ".tar"
     target = Label(binary)
-    print("target:", target)
     cmd = target.name
     cross_binary = cmd + "_cross_binary"
     repo_tag = "%s/%s:latest" % (target.package, target.name)
@@ -89,7 +88,7 @@ def py_image(
     workdir = "/%s/%s/%s" % (target.package, target.name, cross_binary)
     entrypoint = _make_entrypoint(config, workdir, cmd)
 
-    # layer_tars = py_layers(name, cross_binary)
+    layer_tars = py_layers(name, cross_binary)
     layer_tars = []
 
     platform_transition_binary(
