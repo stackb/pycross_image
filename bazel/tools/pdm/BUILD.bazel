@@ -16,6 +16,5 @@ sh_binary(
 
 py_image(
     name = "image",
-    base = "@distroless_python3_debian12",
     binary = ":pdm",
 )
