@@ -1,3 +1,5 @@
+"workspace loading - phase 1"
+
 load(
     "@python//:defs.bzl",
     python_interpreter = "interpreter",

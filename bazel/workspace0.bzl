@@ -1,3 +1,5 @@
+"workspace loading - phase 0"
+
 load(
     "@rules_python//python:repositories.bzl",
     "py_repositories",

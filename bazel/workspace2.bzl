@@ -1,3 +1,5 @@
+"workspace loading - phase 2"
+
 load(
     "@rules_pycross//pycross:workspace.bzl",
     "lock_repo_model_pdm",
