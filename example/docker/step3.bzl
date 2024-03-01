@@ -13,7 +13,7 @@ load(
 )
 load("@pycross_image//bazel/workspace:step2.bzl", "python3_debian12_image")
 
-def _setup_container_base_image(**kwargs):
+def _setup_pycross_image_base_container(**kwargs):
     digest = kwargs.pop("digest", python3_debian12_image.digest)
     registry = kwargs.pop("image", python3_debian12_image.registry)
     repository = kwargs.pop("repository", python3_debian12_image.repository)
@@ -43,6 +43,6 @@ def _setup_pypi_deps():
     )
 
 step3 = struct(
-    setup_container_base_image = _setup_container_base_image,
+    setup_pycross_image_base_container = _setup_pycross_image_base_container,
     setup_pypi_deps = _setup_pypi_deps,
 )

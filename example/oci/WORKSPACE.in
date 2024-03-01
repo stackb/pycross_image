@@ -22,7 +22,7 @@ load("@pycross_image//bazel/workspace:step2.bzl", "step2")
 
 step2.setup_rules_pycross()
 
-step2.setup_oci_containers()
+step2.setup_pycross_image_base_oci()
 
 # -----------------------------------------
 
