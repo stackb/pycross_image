@@ -1,13 +1,36 @@
-load("//tools/example_test:defs.bzl", "example_test")
+load("//bazel/tools/example_test:defs.bzl", "example_test")
 
 example_test(
     name = "oci",
-    srcs = glob(["oci/**/*"]),
+    srcs = [
+        "oci/.bazelversion",
+        "oci/BUILD.in",
+        "oci/WORKSPACE.in",
+        "oci/pdm.lock",
+        "oci/pyproject.toml",
+        "oci/src/app/BUILD.in",
+        "oci/src/app/app.py",
+        "oci/step3.bzl",
+        "oci/step4.bzl",
+    ],
     workspace_template = "local.WORKSPACE",
 )
 
 example_test(
     name = "docker",
-    srcs = glob(["oci/**/*"]),
+    srcs = [
+        "docker/.bazelrc",
+        "docker/.bazelversion",
+        "docker/.docker/config.json",
+        "docker/.dockerconfig.json",
+        "docker/BUILD.in",
+        "docker/WORKSPACE.in",
+        "docker/pdm.lock",
+        "docker/pyproject.toml",
+        "docker/src/app/BUILD.in",
+        "docker/src/app/app.py",
+        "docker/step3.bzl",
+        "docker/step4.bzl",
+    ],
     workspace_template = "local.WORKSPACE",
 )

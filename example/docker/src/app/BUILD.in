@@ -1,0 +1,17 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@pycross_image//bazel/rules:docker.bzl", "py_image")
+
+py_binary(
+    name = "app",
+    srcs = ["app.py"],
+    deps = [
+        "@pypi//:grpclib",
+        "@pypi//:numpy",
+    ],
+)
+
+py_image(
+    name = "image",
+    base = "@distroless_python3_debian12_container//image",
+    binary = ":app",
+)

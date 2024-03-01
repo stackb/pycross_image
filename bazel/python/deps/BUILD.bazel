@@ -1,5 +1,0 @@
-# load("//bazel_tools/python/pycross:poetry_lock.bzl", "targets")
-
-# package(default_visibility = ["//visibility:public"])
-
-# targets()
