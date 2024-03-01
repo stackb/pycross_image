@@ -2,15 +2,17 @@
 
 ![build-status](https://github.com/stackb/pycross_image/actions/workflows/ci.yaml/badge.svg)
 
-Bazel starlark rules for building container images from `py_binary` :sparkles:
-using [@rules_pycross](https://github.com/jvolkman/rules_pycross) :magic:.
+Bazel starlark rules for building container images from `py_binary` using
+[@rules_pycross](https://github.com/jvolkman/rules_pycross) :sparkles:.
 
-`@pycross_image` provides:
+Provides:
 
-- `load("@pycross_image//bazel/rules:oci.bzl", "py_image")`: image rule
-  compatible with [@rules_oci](https://github.com/bazel-contrib/rules_oci)
-- `load("@pycross_image//bazel/rules:docker.bzl", "py_image")`: image rule
-  compatible with [@rules_docker](https://github.com/bazelbuild/rules_docker)
+- `load("@pycross_image//bazel/rules:oci.bzl", "py_image")`
+  - image rule compatible with
+    [@rules_oci](https://github.com/bazel-contrib/rules_oci)
+- `load("@pycross_image//bazel/rules:docker.bzl", "py_image")`
+  - image rule compatible with
+    [@rules_docker](https://github.com/bazelbuild/rules_docker)
 
 ## Installation & Usage
 
@@ -91,5 +93,3 @@ The `pycross_binary` rule transitions from the host platform to `:linux_x86_64`.
 
 The image is partitioned into three tar layers by matching against filename
 patterns (see rule implementation for details).
-
-> `@rules_pycross` supports dependency fetching using PDM or poetry.
