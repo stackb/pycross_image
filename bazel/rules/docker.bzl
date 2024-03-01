@@ -1,11 +1,5 @@
-"""
-Wrapper macro to make three separate layers for python applications
-
-based on: https://github.com/aspect-build/bazel-examples/blob/a25b6c0ba307545aff6c4b5feb4ae875d7d507f1/oci_python_image/py_layer.bzl
-"""
-
-load(":support.bzl", "defaults", "py_layers", "pycross_binary")
 load("@io_bazel_rules_docker//container:container.bzl", "container_image", "container_layer")
+load(":support.bzl", "defaults", "py_layers", "pycross_binary")
 
 def py_image(
         name,
