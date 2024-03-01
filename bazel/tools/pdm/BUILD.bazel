@@ -1,5 +1,8 @@
 load("@rules_python//python:defs.bzl", "py_binary")
+load("@io_bazel_rules_docker//contrib:test.bzl", "container_test")
+load("@container_structure_test//:defs.bzl", image_test = "container_structure_test")
 load("@//bazel/rules:oci.bzl", "py_image")
+load("@//bazel/rules:docker.bzl", py_container = "py_image")
 
 py_binary(
     name = "pdm",
@@ -8,13 +11,24 @@ py_binary(
     deps = ["@pypi_deps_for_pdm//:pdm"],
 )
 
-sh_binary(
-    name = "run",
-    srcs = ["run.sh"],
-    data = [":pdm"],
-)
-
 py_image(
     name = "image",
     binary = ":pdm",
+)
+
+image_test(
+    name = "image_test",
+    configs = ["image-test.yaml"],
+    image = ":image",
+)
+
+py_container(
+    name = "container",
+    binary = ":pdm",
+)
+
+container_test(
+    name = "container_test",
+    configs = ["container-test.yaml"],
+    image = ":container",
 )

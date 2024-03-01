@@ -12,5 +12,6 @@ py_binary(
 
 py_image(
     name = "image",
+    base = "@distroless_python3_debian12_container//image",
     binary = ":app",
 )

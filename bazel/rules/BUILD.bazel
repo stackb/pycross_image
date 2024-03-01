@@ -6,6 +6,6 @@ example_test_filegroup(
         "BUILD.bazel",
         "docker.bzl",
         "oci.bzl",
-        "py_layers.bzl",
+        "support.bzl",
     ],
 )

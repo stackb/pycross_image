@@ -26,13 +26,15 @@ step1.setup_rules_oci()
 
 step1.setup_rules_docker()
 
+step1.setup_container_structure_test()
+
 # -----------------------------------------
 
 load("@pycross_image//bazel/workspace:step2.bzl", "step2")
 
-step2.setup_oci_containers()
+step2.setup_pycross_image_base_oci()
 
-step2.setup_docker_containers()
+step2.setup_pycross_image_base_container()
 
 step2.setup_rules_pycross()
 

@@ -1,0 +1,35 @@
+schemaVersion: 2.0.0
+
+metadataTest:
+  entrypoint: ["/bazel/tools/pdm/xpdm/pdm.runfiles/python_x86_64-unknown-linux-gnu/bin/python3"]
+  cmd: ["pdm"]
+  env:
+    - key: PATH
+      value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  workdir: "/bazel/tools/pdm/xpdm"
+  user: 0
+
+fileExistenceTests:
+  - name: "python3 interpreter"
+    path: "/bazel/tools/pdm/xpdm/pdm.runfiles/python_x86_64-unknown-linux-gnu/bin/python3"
+    shouldExist: true
+    permissions: "-rwxr-xr-x"
+
+fileContentTests:
+  - name: "entrypoint"
+    path: "/bazel/tools/pdm/xpdm/pdm"
+    expectedContents: ["python_imports = 'pypi_deps_for_pdm/_lock/blinker@1.7.0/site-packages:pypi_deps_for_pdm/_lock/filelock@3.13.1/site-packages:pypi_deps_for_pdm/_lock/msgpack@1.0.7/site-packages:pypi_deps_for_pdm/_lock/certifi@2024.2.2/site-packages:pypi_deps_for_pdm/_lock/charset-normalizer@3.3.2/site-packages:pypi_deps_for_pdm/_lock/idna@3.6/site-packages:pypi_deps_for_pdm/_lock/urllib3@1.26.18/site-packages:pypi_deps_for_pdm/_lock/requests@2.31.0/site-packages:pypi_deps_for_pdm/_lock/cachecontrol@0.14.0/site-packages:pypi_deps_for_pdm/_lock/packaging@23.2/site-packages:pypi_deps_for_pdm/_lock/dep-logic@0.0.4/site-packages:pypi_deps_for_pdm/_lock/findpython@0.4.1/site-packages:pypi_deps_for_pdm/_lock/installer@0.7.0/site-packages:pypi_deps_for_pdm/_lock/platformdirs@4.2.0/site-packages:pypi_deps_for_pdm/_lock/tomli@2.0.1/site-packages:pypi_deps_for_pdm/_lock/pyproject-hooks@1.0.0/site-packages:pypi_deps_for_pdm/_lock/python-dotenv@1.0.1/site-packages:pypi_deps_for_pdm/_lock/requests-toolbelt@1.0.0/site-packages:pypi_deps_for_pdm/_lock/resolvelib@1.0.1/site-packages:pypi_deps_for_pdm/_lock/mdurl@0.1.2/site-packages:pypi_deps_for_pdm/_lock/markdown-it-py@3.0.0/site-packages:pypi_deps_for_pdm/_lock/pygments@2.17.2/site-packages:pypi_deps_for_pdm/_lock/rich@13.7.0/site-packages:pypi_deps_for_pdm/_lock/shellingham@1.5.4/site-packages:pypi_deps_for_pdm/_lock/tomlkit@0.12.3/site-packages:pypi_deps_for_pdm/_lock/truststore@0.8.0/site-packages:pypi_deps_for_pdm/_lock/unearth@0.14.0/site-packages:pypi_deps_for_pdm/_lock/distlib@0.3.8/site-packages:pypi_deps_for_pdm/_lock/virtualenv@20.25.0/site-packages:pypi_deps_for_pdm/_lock/pdm@2.12.3/site-packages'"]
+
+commandTests:
+  - name: "bazel python3 version"
+    command: "/bazel/tools/pdm/xpdm/pdm.runfiles/python_x86_64-unknown-linux-gnu/bin/python3"
+    args: ["--version"]
+    expectedOutput: ["Python 3.10.11"]
+  - name: "distroless python3 version"
+    command: "python3"
+    args: ["--version"]
+    expectedOutput: ["Python 3.11.2"]
+  - name: "bazel pdm version"
+    command: "/bazel/tools/pdm/xpdm/pdm.runfiles/python_x86_64-unknown-linux-gnu/bin/python3"
+    args: ["/bazel/tools/pdm/xpdm/pdm", "--version"]
+    expectedOutput: ["PDM, version 2.12.3"]

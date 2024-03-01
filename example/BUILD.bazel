@@ -21,7 +21,6 @@ example_test(
     srcs = [
         "docker/.bazelrc",
         "docker/.bazelversion",
-        "docker/.docker/config.json",
         "docker/.dockerconfig.json",
         "docker/BUILD.in",
         "docker/WORKSPACE.in",

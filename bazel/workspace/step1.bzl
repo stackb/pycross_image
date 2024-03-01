@@ -42,6 +42,7 @@ load(
     "aspect_bazel_lib_dependencies",
     "aspect_bazel_lib_register_toolchains",
 )
+load("@container_structure_test//:repositories.bzl", "container_structure_test_register_toolchain")
 
 def _setup_zig_toolchains():
     "workspace chunk to declares and registers zig toolchains"
@@ -86,6 +87,11 @@ def _setup_rules_oci():
         crane_version = LATEST_CRANE_VERSION,
     )
 
+def _setup_container_structure_test():
+    container_structure_test_register_toolchain(
+        name = "container_structure_test_toolchain",
+    )
+
 step1 = struct(
     setup_aspect_bazel_lib = _setup_aspect_bazel_lib,
     setup_bazel_gazelle = _setup_bazel_gazelle,
@@ -95,4 +101,5 @@ step1 = struct(
     setup_rules_oci = _setup_rules_oci,
     setup_rules_python = _setup_rules_python,
     setup_zig_toolchains = _setup_zig_toolchains,
+    setup_container_structure_test = _setup_container_structure_test,
 )

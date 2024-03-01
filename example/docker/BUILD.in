@@ -1,5 +1,0 @@
-exports_files([
-    "pyproject.toml",
-    "pdm.lock",
-    ".dockerconfig.json",
-])

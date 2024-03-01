@@ -11,14 +11,18 @@ load(
     "@io_bazel_rules_docker//container:pull.bzl",
     "container_pull",
 )
+load("@pycross_image//bazel/workspace:step2.bzl", "python3_debian12_image")
 
-def _setup_docker_containers():
+def _setup_container_base_image(**kwargs):
+    digest = kwargs.pop("digest", python3_debian12_image.digest)
+    registry = kwargs.pop("image", python3_debian12_image.registry)
+    repository = kwargs.pop("repository", python3_debian12_image.repository)
+
     container_pull(
         name = "distroless_python3_debian12_container",
-        # from 'crane manifest gcr.io/distroless/python3-debian12:latest'
-        digest = "sha256:0078c63ba4e9bb13eef1576a183fc0bc3fd04fd3d5a9bad5ede1069bddca0ebd",
-        registry = "gcr.io",
-        repository = "distroless/python3-debian12",
+        digest = digest,
+        registry = registry,
+        repository = repository,
         docker_client_config = "//:.dockerconfig.json",
     )
 
@@ -39,6 +43,6 @@ def _setup_pypi_deps():
     )
 
 step3 = struct(
-    setup_docker_containers = _setup_docker_containers,
+    setup_container_base_image = _setup_container_base_image,
     setup_pypi_deps = _setup_pypi_deps,
 )

@@ -42,19 +42,26 @@ def repositories():
         urls = ["https://github.com/bazelbuild/bazel-skylib/archive/1.5.0.tar.gz"],
     )
 
-    # Commit: c010a3b95427ddfa678e92250e4bcf7d95cf39ce
-    # Date: 2024-02-27 16:03:55 +0000 UTC
-    # URL: https://github.com/GoogleContainerTools/container-structure-test/commit/c010a3b95427ddfa678e92250e4bcf7d95cf39ce
-    #
-    # Release v1.17.0
-    #
-    # Signed-off-by: Appu Goundan <appu@google.com>
-    # Size: 61740 (62 kB)
+    # # Commit: c010a3b95427ddfa678e92250e4bcf7d95cf39ce
+    # # Date: 2024-02-27 16:03:55 +0000 UTC
+    # # URL: https://github.com/GoogleContainerTools/container-structure-test/commit/c010a3b95427ddfa678e92250e4bcf7d95cf39ce
+    # #
+    # # Release v1.17.0
+    # #
+    # # Signed-off-by: Appu Goundan <appu@google.com>
+    # # Size: 61740 (62 kB)
+    # http_archive(
+    #     name = "container_structure_test",
+    #     sha256 = "df5043d1edef7c06f8ba94cb8b383b4a9cb4bdcf90db4b9c312a6a8ddd336916",
+    #     strip_prefix = "container-structure-test-c010a3b95427ddfa678e92250e4bcf7d95cf39ce",
+    #     urls = ["https://github.com/GoogleContainerTools/container-structure-test/archive/c010a3b95427ddfa678e92250e4bcf7d95cf39ce.tar.gz"],
+    # )
+
     http_archive(
         name = "container_structure_test",
-        sha256 = "df5043d1edef7c06f8ba94cb8b383b4a9cb4bdcf90db4b9c312a6a8ddd336916",
-        strip_prefix = "container-structure-test-c010a3b95427ddfa678e92250e4bcf7d95cf39ce",
-        urls = ["https://github.com/GoogleContainerTools/container-structure-test/archive/c010a3b95427ddfa678e92250e4bcf7d95cf39ce.tar.gz"],
+        sha256 = "6e5e3cbb15f2785c652822a56e0c86b14b630a6a3a410c889e718d580f2c19a7",
+        strip_prefix = "container-structure-test-18d9b2bcd2cbee1ab8df7c232ef6b7cddff9708a",
+        urls = ["https://github.com/GoogleContainerTools/container-structure-test/archive/18d9b2bcd2cbee1ab8df7c232ef6b7cddff9708a.zip"],
     )
 
     # Release: v0.25.0

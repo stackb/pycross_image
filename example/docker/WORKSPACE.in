@@ -26,12 +26,11 @@ load("@pycross_image//bazel/workspace:step2.bzl", "step2")
 
 step2.setup_rules_pycross()
 
-
 # -----------------------------------------
 
 load("@//:step3.bzl", "step3")
 
-step3.setup_docker_containers()
+step3.setup_container_base_image()
 
 step3.setup_pypi_deps()
 
