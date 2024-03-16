@@ -6,6 +6,7 @@ def py_image(
         binary,
         base = "@pycross_image_base_container//image",
         layers = [],
+        tags = [],
         **kwargs):
     """
     py_image is a macro that instantiates an container_image from a py_binary rule
@@ -15,6 +16,7 @@ def py_image(
         binary: target label of the py_binary rule
         base: target label of the base image
         layers: additional container_layer targets
+        tags: additional bazel tags for the container_image
         **kwargs: additional arguments for the pycross_binary and container_image rules
     """
 
@@ -42,6 +44,6 @@ def py_image(
         entrypoint = metadata.entrypoint,
         cmd = metadata.cmd,
         workdir = metadata.workdir,
-        tags = [metadata.repo_tag],
+        tags = [metadata.repo_tag] + tags,
         **kwargs
     )

@@ -19,7 +19,6 @@ example_test(
 example_test(
     name = "docker",
     srcs = [
-        "docker/.bazelrc",
         "docker/.bazelversion",
         "docker/.docker/config.json",
         "docker/.dockerconfig.json",

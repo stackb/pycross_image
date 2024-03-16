@@ -19,20 +19,21 @@ Provides:
 See [releases] page for an `http_archive` of the latest `@pycross_image`.
 
 Examples:
-- [@rules_oci example](example/oci/WORKSPACE.in).
-- [@rules_docker example](example/docker/WORKSPACE.in).
+
+- [@rules_oci example](example/oci/WORKSPACE.in)
+- [@rules_docker example](example/docker/WORKSPACE.in)
 
 A few notes about the workspace setup:
 
 - It's divided into "steps" based on load statement dependencies.  `step1.bzl`
   only depends on things declared in `repositories.bzl`, `step2.bzl` depends on
-  things declared in `step3.bzl`, etc (this pattern is from
+  things declared in `step1.bzl`, etc (this pattern is from
   [tensorflow](https://github.com/tensorflow/tensorflow/tree/master/tensorflow)).
-- Your workspace may already have many of the dependencies.  Some of the
+- Your workspace may already contain some of these dependencies.  Also, selected
   external workspace names may be differ from yours. Use the example as a study
   guide rather than canonical reference.
 - The examples are only tested with the older `WORKSPACE`.  The rules may not be
-  compatible with bzlmod yet.
+  compatible with `bzlmod` yet.
 
 ## How it Works
 
@@ -43,7 +44,7 @@ graph TD;
     numpy{{numpy}}
     grpclib{{grpclib}}
 
-    subgraph linux_x86_64["linuxx86_64\n"]
+    subgraph linux_x86_64
         image.tar-->image;
         image-->app_layer;
         image-->site_packages_layer;
